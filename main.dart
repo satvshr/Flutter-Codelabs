@@ -115,7 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
+  @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -133,11 +138,15 @@ class FavoritesPage extends StatelessWidget {
               Expanded(
                 child: Text(word.asPascalCase),
               ),
-              IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
                   fav.remove(word);
+                  setState(() {});
                 },
+                child: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: null,
+                ),
               ),
             ],
           ),
